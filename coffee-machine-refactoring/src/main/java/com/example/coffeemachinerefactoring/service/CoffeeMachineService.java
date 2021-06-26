@@ -15,6 +15,7 @@ public class CoffeeMachineService {
         Scanner scanner = new Scanner(System.in);
 
         showMenu(scanner);
+        makeDrinkMachine.showOrder();
 
         scanner.close();
     }
@@ -27,6 +28,8 @@ public class CoffeeMachineService {
         System.out.println("<<< WELCOME TO THE REFACTORED COFFEE MACHINE >>>");
         showDrinkTypeMenu(scanner);
         showMoneyMenu(scanner);
+        showSugarMenu(scanner);
+        showExtraHotMenu(scanner);
     }
 
     private void showDrinkTypeMenu(Scanner scanner) {
@@ -44,5 +47,21 @@ public class CoffeeMachineService {
         double typedMoney = scanner.nextDouble();
 
         makeDrinkMachine.validaTePrice(typedMoney);
+    }
+
+    private void showSugarMenu(Scanner scanner) {
+        System.out.println("<<< Would you like some sugar in your drink? >>>");
+        System.out.println("<<< (Type Y for YES or N for NO) >>>");
+
+        String wantsSugar = scanner.next();
+
+        if (wantsSugar.toUpperCase().equals("Y")) {
+            System.out.println("<<< How much extra sugar do you want? >>>");
+            System.out.println("<<< (Today we add 1 or 2 extra sugar cubes) >>>");
+
+            int typedSugar = scanner.nextInt();
+
+            makeDrinkMachine.validateExtraSugar(typedSugar);
+        }
     }
 }

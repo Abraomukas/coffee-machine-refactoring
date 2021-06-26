@@ -43,4 +43,13 @@ public class MakeDrinkMachine {
             money = typedMoney;
         }
     }
+
+    public void validateExtraSugar(int typedSugar) {
+        if (typedSugar > 2) {
+            message = "The number of extra sugar cubes should be either 1 or 2.";
+            System.out.println(message);
+        } else {
+            sugar = typedSugar;
+        }
+    }
 }
