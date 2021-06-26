@@ -1,6 +1,6 @@
 package com.example.coffeemachinerefactoring.service;
 
-import com.example.coffeemachinerefactoring.CoffeeMachine;
+import com.example.coffeemachinerefactoring.MakeDrinkMachine;
 import org.springframework.stereotype.Service;
 
 import java.util.Scanner;
@@ -8,34 +8,41 @@ import java.util.Scanner;
 @Service
 public class CoffeeMachineService {
 
-    private CoffeeMachine coffeeMachine;
+    private MakeDrinkMachine makeDrinkMachine;
 
     public void startCoffeeMachine() {
-        coffeeMachine = new CoffeeMachine();
-        showMenu();
+        makeDrinkMachine = new MakeDrinkMachine();
+        Scanner scanner = new Scanner(System.in);
+
+        showMenu(scanner);
+
+        scanner.close();
     }
 
     public void getMoneyReport() {
         System.out.println("Money report!");
     }
 
-    private void showMenu() {
+    private void showMenu(Scanner scanner) {
         System.out.println("<<< WELCOME TO THE REFACTORED COFFEE MACHINE >>>");
-        showDrinkTypeMenu();
-        showMoneyMenu();
+        showDrinkTypeMenu(scanner);
+        showMoneyMenu(scanner);
     }
 
-    private void showDrinkTypeMenu() {
+    private void showDrinkTypeMenu(Scanner scanner) {
         System.out.println("<<< Please type your order: >>>");
         System.out.println("<<< (Today we have coffee, chocolate and tea) >>>");
 
-        Scanner scanner = new Scanner(System.in);
-        String chosenDrinkType = scanner.next();
-        scanner.close();
+        String typedDrinkType = scanner.next();
 
-        coffeeMachine.validate(chosenDrinkType);
+        makeDrinkMachine.validateDrinkType(typedDrinkType);
     }
 
-    private void showMoneyMenu() {
+    private void showMoneyMenu(Scanner scanner) {
+        System.out.println("<<< Please insert your payment: >>>");
+
+        double typedMoney = scanner.nextDouble();
+
+        makeDrinkMachine.validaTePrice(typedMoney);
     }
 }

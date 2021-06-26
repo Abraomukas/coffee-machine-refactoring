@@ -9,30 +9,38 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class CoffeeMachine {
+public class MakeDrinkMachine {
 
     private DrinkType drinkType;
-    private float money;
+    private double money;
     private int sugar;
     private boolean extraHot;
+    private String message;
 
 
-    public void validate(String chosenDrinkType) {
-        switch (chosenDrinkType.toUpperCase()) {
+    public void validateDrinkType(String typedDrinkType) {
+        switch (typedDrinkType.toUpperCase()) {
             case "COFFEE":
                 drinkType = DrinkType.COFFEE;
-                System.out.println(getDrinkType());
                 break;
             case "CHOCOLATE":
                 drinkType = DrinkType.CHOCOLATE;
-                System.out.println(getDrinkType());
                 break;
             case "TEA":
                 drinkType = DrinkType.TEA;
-                System.out.println(getDrinkType());
                 break;
             default:
-                System.out.println("The drink type should be tea, coffee or chocolate.");
+                message = "The drink type should be tea, coffee or chocolate.";
+                System.out.println(message);
+        }
+    }
+
+    public void validaTePrice(double typedMoney) {
+        if (typedMoney < drinkType.price) {
+            message = "The " + drinkType.toString().toLowerCase() + " costs " + drinkType.price + ".";
+            System.out.println(message);
+        } else {
+            money = typedMoney;
         }
     }
 }

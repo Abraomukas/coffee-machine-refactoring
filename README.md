@@ -17,7 +17,7 @@ message of the desired drink.
 |#      |Name       |Type   |Required   |Description    |Values                 |Default|
 |---    |---        |---    |---        |---            |---                    |---    |
 |1      |drinkType  |string |true       |Type of drink  |tea, coffee, chocolate |
-|2      |money      |float  |true       |Money given    |                       |
+|2      |money      |double |true       |Money given    |                       |
 |3      |sugars     |int    |false      |# of sugars    |0, 1, 2                |0      |
 |4      |extraHot   |boolean|false      |Extra hot flag |true, false            |false  |
 
