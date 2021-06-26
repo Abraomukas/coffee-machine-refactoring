@@ -1,5 +1,6 @@
 package com.example.coffeemachinerefactoring.controller;
 
+import com.example.coffeemachinerefactoring.service.CoffeeMachineService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,12 +15,12 @@ public class CoffeeMachineController {
 
     @GetMapping("/")
     public void startCoffeeMachine() {
-        return service.startCoffeeMachine();
+        service.startCoffeeMachine();
     }
 
     @GetMapping("/money")
     public void getMoneyReport() {
-        return service.getMoneyReport();
+        service.getMoneyReport();
     }
 
 }
