@@ -16,6 +16,7 @@ public class MakeDrinkMachine {
     private int sugar;
     private boolean extraHot;
     private String message;
+    private boolean endOfOrder;
 
 
     public void validateDrinkType(String typedDrinkType) {
@@ -39,33 +40,40 @@ public class MakeDrinkMachine {
         if (typedMoney < drinkType.price) {
             message = "The " + drinkType.toString().toLowerCase() + " costs " + drinkType.price + ".";
             System.out.println(message);
+            endOfOrder = true;
         } else {
             money = typedMoney;
         }
     }
 
     public void validateExtraSugar(int typedSugar) {
-        if (typedSugar > 2) {
-            message = "The number of extra sugar cubes should be either 1 or 2.";
-            System.out.println(message);
-        } else {
-            sugar = typedSugar;
+        if (!endOfOrder) {
+            if (typedSugar > 2) {
+                message = "The number of extra sugar cubes should be either 1 or 2.";
+                System.out.println(message);
+            } else {
+                sugar = typedSugar;
+            }
         }
     }
 
     public void makeDrinkExtraHot() {
-        extraHot = true;
+        if (!endOfOrder) {
+            extraHot = true;
+        }
     }
 
     public void showOrder() {
-        message = "You have ordered a " + drinkType.toString().toLowerCase();
+        if (!endOfOrder) {
+            message = "You have ordered a " + drinkType.toString().toLowerCase();
 
-        if (sugar > 0) {
-            message += " with " + sugar + " extra sugar cubes (stick included).";
-        }
+            if (sugar > 0) {
+                message += " with " + sugar + " extra sugar cubes (stick included).";
+            }
 
-        if (extraHot) {
-            message += " Extra hot.";
+            if (extraHot) {
+                message += " Extra hot.";
+            }
         }
 
         System.out.println(message);
