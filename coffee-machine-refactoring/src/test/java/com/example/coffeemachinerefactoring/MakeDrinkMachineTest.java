@@ -77,4 +77,148 @@ class MakeDrinkMachineTest {
         String result = underTest.getMessage();
         assertThat(result).isEqualTo(expected);
     }
+
+    @Test
+    void itShouldOrder_TeaWithOneExtraSugarCube() {
+        //given
+        underTest.validateDrinkType("tea");
+        underTest.validaTePrice(1);
+        underTest.validateExtraSugar(1);
+        String expected = "You have ordered a tea with 1 extra sugar cubes (stick included).";
+
+        //when
+        underTest.showOrder();
+
+        //
+        String result = underTest.getMessage();
+        assertThat(result).isEqualTo(expected);
+    }
+
+    @Test
+    void itShouldOrder_ExtraHotTeaWithOneExtraSugarCube() {
+        //given
+        underTest.validateDrinkType("tea");
+        underTest.validaTePrice(1);
+        underTest.validateExtraSugar(1);
+        underTest.makeDrinkExtraHot();
+        String expected = "You have ordered a tea with 1 extra sugar cubes (stick included). Extra hot.";
+
+        //when
+        underTest.showOrder();
+
+        //
+        String result = underTest.getMessage();
+        assertThat(result).isEqualTo(expected);
+    }
+
+    @Test
+    void itShouldOrder_Tea() {
+        //given
+        underTest.validateDrinkType("tea");
+        underTest.validaTePrice(1);
+        String expected = "You have ordered a tea";
+
+        //when
+        underTest.showOrder();
+
+        //
+        String result = underTest.getMessage();
+        assertThat(result).isEqualTo(expected);
+    }
+
+    @Test
+    void itShouldOrder_TeaWithInsufficientMoney() {
+        //given
+        underTest.validateDrinkType("tea");
+        underTest.validaTePrice(0.1);
+        underTest.validateExtraSugar(1);
+        String expected = "The tea costs 0.4.";
+
+        //when
+        underTest.showOrder();
+
+        //
+        String result = underTest.getMessage();
+        assertThat(result).isEqualTo(expected);
+    }
+
+    @Test
+    void itShouldOrder_ChocolateWithOneExtraSugarCube() {
+        //given
+        underTest.validateDrinkType("chocolate");
+        underTest.validaTePrice(1);
+        underTest.validateExtraSugar(1);
+        String expected = "You have ordered a chocolate with 1 extra sugar cubes (stick included).";
+
+        //when
+        underTest.showOrder();
+
+        //
+        String result = underTest.getMessage();
+        assertThat(result).isEqualTo(expected);
+    }
+
+    @Test
+    void itShouldOrder_ExtraHotChocolateWithOneExtraSugarCube() {
+        //given
+        underTest.validateDrinkType("chocolate");
+        underTest.validaTePrice(1);
+        underTest.validateExtraSugar(1);
+        underTest.makeDrinkExtraHot();
+        String expected = "You have ordered a chocolate with 1 extra sugar cubes (stick included). Extra hot.";
+
+        //when
+        underTest.showOrder();
+
+        //
+        String result = underTest.getMessage();
+        assertThat(result).isEqualTo(expected);
+    }
+
+    @Test
+    void itShouldOrder_Chocolate() {
+        //given
+        underTest.validateDrinkType("chocolate");
+        underTest.validaTePrice(1);
+        String expected = "You have ordered a chocolate";
+
+        //when
+        underTest.showOrder();
+
+        //
+        String result = underTest.getMessage();
+        assertThat(result).isEqualTo(expected);
+    }
+
+    @Test
+    void itShouldOrder_ChocolateWithInsufficientMoney() {
+        //given
+        underTest.validateDrinkType("chocolate");
+        underTest.validaTePrice(0.1);
+        underTest.validateExtraSugar(1);
+        String expected = "The chocolate costs 0.6.";
+
+        //when
+        underTest.showOrder();
+
+        //
+        String result = underTest.getMessage();
+        assertThat(result).isEqualTo(expected);
+    }
+
+    @Test
+    void itShouldNotOrder() {
+        //given
+        underTest.validateDrinkType("foo");
+        underTest.validaTePrice(0.1);
+        underTest.validateExtraSugar(1);
+        String expected = "The drink type should be tea, coffee or chocolate.";
+
+        //when
+        underTest.showOrder();
+
+        //
+        String result = underTest.getMessage();
+        assertThat(result).isEqualTo(expected);
+    }
 }

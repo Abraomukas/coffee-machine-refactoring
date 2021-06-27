@@ -32,17 +32,20 @@ public class MakeDrinkMachine {
                 break;
             default:
                 message = "The drink type should be tea, coffee or chocolate.";
+                endOfOrder = true;
                 System.out.println(message);
         }
     }
 
     public void validaTePrice(double typedMoney) {
-        if (typedMoney < drinkType.price) {
-            message = "The " + drinkType.toString().toLowerCase() + " costs " + drinkType.price + ".";
-            System.out.println(message);
-            endOfOrder = true;
-        } else {
-            money = typedMoney;
+        if (!endOfOrder) {
+            if (typedMoney < drinkType.price) {
+                message = "The " + drinkType.toString().toLowerCase() + " costs " + drinkType.price + ".";
+                System.out.println(message);
+                endOfOrder = true;
+            } else {
+                money = typedMoney;
+            }
         }
     }
 
