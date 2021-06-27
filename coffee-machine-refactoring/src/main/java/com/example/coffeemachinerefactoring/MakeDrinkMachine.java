@@ -52,4 +52,22 @@ public class MakeDrinkMachine {
             sugar = typedSugar;
         }
     }
+
+    public void makeDrinkExtraHot() {
+        extraHot = true;
+    }
+
+    public void showOrder() {
+        message = "You have ordered a " + drinkType.toString().toLowerCase();
+
+        if (sugar > 0) {
+            message += " with " + sugar + " extra sugar cubes (stick included).";
+        }
+
+        if (extraHot) {
+            message += " Extra hot.";
+        }
+
+        System.out.println(message);
+    }
 }

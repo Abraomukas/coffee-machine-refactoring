@@ -64,4 +64,15 @@ public class CoffeeMachineService {
             makeDrinkMachine.validateExtraSugar(typedSugar);
         }
     }
+
+    private void showExtraHotMenu(Scanner scanner) {
+        System.out.println("<<< Would you like your drink to be extra hot? >>>");
+        System.out.println("<<< (Type Y for YES or N for NO) >>>");
+
+        String wantsExtraHot = scanner.next();
+
+        if (wantsExtraHot.toUpperCase().equals("Y")) {
+            makeDrinkMachine.makeDrinkExtraHot();
+        }
+    }
 }
