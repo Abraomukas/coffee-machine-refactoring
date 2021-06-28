@@ -20,7 +20,7 @@ class MakeDrinkMachineTest {
         underTest.validateDrinkType("coffee");
         underTest.validaTePrice(1);
         underTest.validateExtraSugar(1);
-        String expected = "You have ordered a coffee with 1 extra sugar cubes (stick included).";
+        String expected = "You have ordered a coffee. With 1 extra sugar cubes (stick included)";
 
         //when
         underTest.showOrder();
@@ -37,7 +37,7 @@ class MakeDrinkMachineTest {
         underTest.validaTePrice(1);
         underTest.validateExtraSugar(1);
         underTest.makeDrinkExtraHot();
-        String expected = "You have ordered a coffee with 1 extra sugar cubes (stick included). Extra hot.";
+        String expected = "You have ordered a coffee. With 1 extra sugar cubes (stick included). Extra hot";
 
         //when
         underTest.showOrder();
@@ -84,7 +84,7 @@ class MakeDrinkMachineTest {
         underTest.validateDrinkType("tea");
         underTest.validaTePrice(1);
         underTest.validateExtraSugar(1);
-        String expected = "You have ordered a tea with 1 extra sugar cubes (stick included).";
+        String expected = "You have ordered a tea. With 1 extra sugar cubes (stick included)";
 
         //when
         underTest.showOrder();
@@ -101,7 +101,7 @@ class MakeDrinkMachineTest {
         underTest.validaTePrice(1);
         underTest.validateExtraSugar(1);
         underTest.makeDrinkExtraHot();
-        String expected = "You have ordered a tea with 1 extra sugar cubes (stick included). Extra hot.";
+        String expected = "You have ordered a tea. With 1 extra sugar cubes (stick included). Extra hot";
 
         //when
         underTest.showOrder();
@@ -148,7 +148,7 @@ class MakeDrinkMachineTest {
         underTest.validateDrinkType("chocolate");
         underTest.validaTePrice(1);
         underTest.validateExtraSugar(1);
-        String expected = "You have ordered a chocolate with 1 extra sugar cubes (stick included).";
+        String expected = "You have ordered a chocolate. With 1 extra sugar cubes (stick included)";
 
         //when
         underTest.showOrder();
@@ -165,7 +165,7 @@ class MakeDrinkMachineTest {
         underTest.validaTePrice(1);
         underTest.validateExtraSugar(1);
         underTest.makeDrinkExtraHot();
-        String expected = "You have ordered a chocolate with 1 extra sugar cubes (stick included). Extra hot.";
+        String expected = "You have ordered a chocolate. With 1 extra sugar cubes (stick included). Extra hot";
 
         //when
         underTest.showOrder();

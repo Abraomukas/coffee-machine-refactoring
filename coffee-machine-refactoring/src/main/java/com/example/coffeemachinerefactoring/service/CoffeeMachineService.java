@@ -8,28 +8,33 @@ import java.util.Scanner;
 @Service
 public class CoffeeMachineService {
 
-    private MakeDrinkMachine makeDrinkMachine;
+    private final MakeDrinkMachine makeDrinkMachine = new MakeDrinkMachine();
 
     public void startCoffeeMachine() {
-        makeDrinkMachine = new MakeDrinkMachine();
         Scanner scanner = new Scanner(System.in);
 
+        System.out.println("<<< WELCOME TO THE REFACTORED COFFEE MACHINE! >>>");
+        System.out.println();
         showMenu(scanner);
-        makeDrinkMachine.showOrder();
 
         scanner.close();
     }
 
     public void getMoneyReport() {
-        System.out.println("Money report!");
+        makeDrinkMachine.showMoneyReport();
     }
 
     private void showMenu(Scanner scanner) {
-        System.out.println("<<< WELCOME TO THE REFACTORED COFFEE MACHINE >>>");
         showDrinkTypeMenu(scanner);
         showMoneyMenu(scanner);
         showSugarMenu(scanner);
         showExtraHotMenu(scanner);
+
+        if (!makeDrinkMachine.isEndOfOrder()) {
+            makeDrinkMachine.showOrder();
+        }
+
+        newOrder(scanner);
     }
 
     private void showDrinkTypeMenu(Scanner scanner) {
@@ -50,29 +55,48 @@ public class CoffeeMachineService {
     }
 
     private void showSugarMenu(Scanner scanner) {
-        System.out.println("<<< Would you like some sugar in your drink? >>>");
-        System.out.println("<<< (Type Y for YES or N for NO) >>>");
+        if (!makeDrinkMachine.isEndOfOrder()) {
+            System.out.println("<<< Would you like some sugar in your drink? >>>");
+            System.out.println("<<< (Type Y for YES or anything else for NO) >>>");
 
-        String wantsSugar = scanner.next();
+            String wantsSugar = scanner.next();
 
-        if (wantsSugar.toUpperCase().equals("Y")) {
-            System.out.println("<<< How much extra sugar do you want? >>>");
-            System.out.println("<<< (Today we add 1 or 2 extra sugar cubes) >>>");
+            if (wantsSugar.equalsIgnoreCase("Y")) {
+                System.out.println("<<< How much extra sugar do you want? >>>");
+                System.out.println("<<< (Today we add 1 or 2 extra sugar cubes) >>>");
 
-            int typedSugar = scanner.nextInt();
+                int typedSugar = scanner.nextInt();
 
-            makeDrinkMachine.validateExtraSugar(typedSugar);
+                makeDrinkMachine.validateExtraSugar(typedSugar);
+            }
         }
     }
 
     private void showExtraHotMenu(Scanner scanner) {
-        System.out.println("<<< Would you like your drink to be extra hot? >>>");
-        System.out.println("<<< (Type Y for YES or N for NO) >>>");
+        if (!makeDrinkMachine.isEndOfOrder()) {
+            System.out.println("<<< Would you like your drink to be extra hot? >>>");
+            System.out.println("<<< (Type Y for YES or anything else for NO) >>>");
 
-        String wantsExtraHot = scanner.next();
+            String wantsExtraHot = scanner.next();
 
-        if (wantsExtraHot.toUpperCase().equals("Y")) {
-            makeDrinkMachine.makeDrinkExtraHot();
+            if (wantsExtraHot.equalsIgnoreCase("Y")) {
+                makeDrinkMachine.makeDrinkExtraHot();
+            }
+        }
+    }
+
+    private void newOrder(Scanner scanner) {
+        System.out.println();
+        System.out.println("<<< Would you like to order another drink? >>>");
+        System.out.println("<<< (Type Y for YES or anything else for NO) >>>");
+
+        String typedOption = scanner.next();
+        if (typedOption.equalsIgnoreCase("Y")) {
+            showMenu(scanner);
+        } else {
+            System.out.println();
+            System.out.println("<<< THANK YOU FOR USING THE REFACTORED COFFEE MACHINE! >>>");
+            System.out.println("<<< HAVE A NICE DAY! >>>");
         }
     }
 }

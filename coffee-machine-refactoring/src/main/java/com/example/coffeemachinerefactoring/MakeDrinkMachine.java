@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.text.DecimalFormat;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -13,6 +15,9 @@ public class MakeDrinkMachine {
 
     private DrinkType drinkType;
     private double money;
+    private double totalTeaEarnings;
+    private double totalCoffeeEarnings;
+    private double totalChocolateEarnings;
     private int sugar;
     private boolean extraHot;
     private String message;
@@ -20,6 +25,9 @@ public class MakeDrinkMachine {
 
 
     public void validateDrinkType(String typedDrinkType) {
+        endOfOrder = false;
+        extraHot = false;
+        sugar = 0;
         switch (typedDrinkType.toUpperCase()) {
             case "COFFEE":
                 drinkType = DrinkType.COFFEE;
@@ -40,11 +48,18 @@ public class MakeDrinkMachine {
     public void validaTePrice(double typedMoney) {
         if (!endOfOrder) {
             if (typedMoney < drinkType.price) {
+                endOfOrder = true;
                 message = "The " + drinkType.toString().toLowerCase() + " costs " + drinkType.price + ".";
                 System.out.println(message);
-                endOfOrder = true;
             } else {
-                money = typedMoney;
+                double change = typedMoney - drinkType.price;
+                if (change == 0) {
+                    money = typedMoney;
+                } else {
+                    money = drinkType.price;
+                    System.out.println("Here is your change: " + change);
+                }
+                increaseEarningsOf(drinkType);
             }
         }
     }
@@ -71,14 +86,38 @@ public class MakeDrinkMachine {
             message = "You have ordered a " + drinkType.toString().toLowerCase();
 
             if (sugar > 0) {
-                message += " with " + sugar + " extra sugar cubes (stick included).";
+                message += ". With " + sugar + " extra sugar cubes (stick included)";
             }
 
             if (extraHot) {
-                message += " Extra hot.";
+                message += ". Extra hot";
             }
-        }
 
-        System.out.println(message);
+            System.out.println(message);
+        }
+    }
+
+    private void increaseEarningsOf(DrinkType drinkType) {
+        switch (drinkType) {
+            case TEA:
+                totalTeaEarnings += drinkType.price;
+                break;
+            case COFFEE:
+                totalCoffeeEarnings += drinkType.price;
+                break;
+            case CHOCOLATE:
+                totalChocolateEarnings += drinkType.price;
+                break;
+        }
+    }
+
+    public void showMoneyReport() {
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+
+        System.out.println("<<< MONEY REPORT >>>");
+        System.out.println("DRINK\t\tMONEY");
+        System.out.println(DrinkType.TEA + "\t\t\t" + decimalFormat.format(totalTeaEarnings));
+        System.out.println(DrinkType.COFFEE + "\t\t" + decimalFormat.format(totalCoffeeEarnings));
+        System.out.println(DrinkType.CHOCOLATE + "\t" + decimalFormat.format(totalChocolateEarnings));
     }
 }
