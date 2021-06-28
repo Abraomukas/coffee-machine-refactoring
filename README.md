@@ -6,11 +6,53 @@ message of the desired drink.
 
 ## How it works
 
-### Command
+Follow these steps in order to use the app:
+
+1. Run this command (cloning the repository):
 
 ```
-./make run
+git clone https://github.com/Abraomukas/coffee-machine-refactoring.git
 ```
+
+2. Go into the app folder and run this command (creates and executes a JAR):
+
+```
+cd  coffee-machine-refactoring/
+make jar
+```
+
+3.1 Run the app in your browser and access the *coffee/* endpoint (by default, it runs on port 8080):
+
+```
+http://localhost:8080/coffee/
+```
+
+3.2 To get the money report, access the *money/* endpoint
+
+```
+http://localhost:8080/money/
+```
+
+### Usage
+
+
+```
+make <command>
+```
+
+Possibilities for `<command>`:
+
+- #### `make jar`
+    - Creates and executes a **jar** of the application
+
+- #### `make test`
+    - Runs all unit tests
+
+- #### `make docker`
+    - Builds and runs a **Docker** container of the application
+
+- #### `make clean`
+    - Stops the **Docker** container and purges all unused images and containers
 
 ### Input
 
