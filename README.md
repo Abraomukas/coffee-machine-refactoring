@@ -95,6 +95,6 @@ Something like the following table would be great:
 ## Decisions made
 
 1. This application has been refactored and modernized using **Java 11** and **Maven**
-2. Legacy functionality is taken over and tested
-3. Keeping the console application design approach, all the interaction is done via the terminal via a menu
+2. Legacy functionality taken over and tested
+3. Keeping the console application design approach, all the interaction done via the terminal via a menu
 4. **Spring Boot** and **Docker** have been added to multiply the amount of possible environments that can run this application.
